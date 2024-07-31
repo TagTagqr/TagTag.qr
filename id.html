@@ -6,10 +6,14 @@
     <title>Redirection</title>
     <meta http-equiv="refresh" content="0; url=http://nouvelle-url.com" />
     <script type="text/javascript">
-        window.location.href = "http://nouvelle-url.com";
-        setTimeout(function() {
-            window.close();
-        }, 1000); // Délai de 1 seconde avant la fermeture de la page
+        window.onload = function() {
+            window.location.href = "http://nouvelle-url.com";
+            var newWindow = window.open("", "_self");
+            newWindow.opener = null; // Nécessaire pour certains navigateurs
+            setTimeout(function() {
+                newWindow.close();
+            }, 1000); // Délai de 1 seconde avant la fermeture de la page
+        }
     </script>
 </head>
 <body>
